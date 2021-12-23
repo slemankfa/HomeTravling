@@ -3,8 +3,9 @@ import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:home_travling/core/error/exceptions.dart';
 import 'package:home_travling/core/error/failure.dart';
-import 'package:home_travling/core/platform/network_info.dart';
+import 'package:home_travling/core/network/network_info.dart';
 import 'package:home_travling/featuers/fetch_countries/data/datasources/countries_remote_data_source.dart';
+import 'package:home_travling/featuers/fetch_countries/data/models/country_model.dart';
 import 'package:home_travling/featuers/fetch_countries/data/repositories/countries_repostiry_impl.dart';
 import 'package:home_travling/featuers/fetch_countries/domain/entities/country_entity.dart';
 import 'package:mocktail/mocktail.dart';
@@ -51,8 +52,8 @@ void main() async {
   }
 
   group("Get Countries List", () {
-    List<CountryEntity> tCountriesList = const [
-      CountryEntity(
+    List<CountryModel> tCountriesList = const [
+      CountryModel(
         countryEnglishName: "Italy",
         countryArabicName: "ايطاليا",
         countryId: "1",
@@ -121,8 +122,8 @@ void main() async {
   });
 
   group("Load More Countries List", () {
-    List<CountryEntity> tCountriesList = const [
-      CountryEntity(
+    List<CountryModel> tCountriesList = const [
+      CountryModel(
         countryEnglishName: "Italy",
         countryArabicName: "ايطاليا",
         countryId: "1",
@@ -176,7 +177,7 @@ void main() async {
 
     // group("when the device is online", ());
 
-    runTestOffline(()  {
+    runTestOffline(() {
       test("should return error message there is no connection", () async {
         // arrange
         when(() => mockRemoteDataSource.loadMoreCountriesList(firstDocument))

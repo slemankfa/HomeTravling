@@ -1,11 +1,12 @@
-import 'package:home_travling/core/error/exceptions.dart';
-import 'package:home_travling/core/platform/network_info.dart';
-import 'package:home_travling/featuers/fetch_countries/data/datasources/countries_remote_data_source.dart';
-import 'package:home_travling/featuers/fetch_countries/domain/entities/country_entity.dart';
-import 'package:home_travling/core/error/failure.dart';
-import 'package:dartz/dartz.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:home_travling/featuers/fetch_countries/domain/repositories/countries_repostiry.dart';
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/error/exceptions.dart';
+import '../../../../core/error/failure.dart';
+import '../../../../core/network/network_info.dart';
+import '../../domain/entities/country_entity.dart';
+import '../../domain/repositories/countries_repostiry.dart';
+import '../datasources/countries_remote_data_source.dart';
 
 typedef Future<List<CountryEntity>> _LoadCountriesOrLoadMoreList();
 
