@@ -20,7 +20,6 @@ class FetchCountriesBloc
   final GetCountriesList getCountriesList;
 
   List<CountryEntity> loadedCountries = [];
-  late DocumentSnapshot theLastDocumentSnapShot;
 
   FetchCountriesBloc({
     required this.getCountriesList,

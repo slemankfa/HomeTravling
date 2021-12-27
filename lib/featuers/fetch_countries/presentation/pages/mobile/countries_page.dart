@@ -35,42 +35,30 @@ class _CountriesScreenState extends State<CountriesScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => sl<FetchCountriesBloc>(),
-      child: BlocBuilder<FetchCountriesBloc, FetchCountriesState>(
-          builder: (context, state) {
-        if (state is ErrorState) {
-          print("Error" + state.message);
-        } else if (state is LoadedState) {
-          print("loaded" + state.loadedCountriesList.length.toString());
-        }
-        return Scaffold(
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text("esrrr")],
-          ),
-          floatingActionButton: Row(
-            children: [
-              FloatingActionButton(
-                onPressed: () {
-                  BlocProvider.of<FetchCountriesBloc>(context)
-                      .add(GetCountriesListEvent());
-                },
-                tooltip: 'Increment',
-                child: const Icon(Icons.more),
-              ),
-              FloatingActionButton(
-                onPressed: () {
-                  // BlocProvider.of<FetchCountriesBloc>(context)
-                  //     .add(LoadMoreCountriesListEvent());
-                },
-                tooltip: 'Increment',
-                child: const Icon(Icons.add),
-              ),
-            ],
-          ), // This
-        );
-      }),
+      create: (_) => sl<FetchCountriesBloc>()..add(GetCountriesListEvent()),
+      child: Scaffold(
+        body: BlocBuilder<FetchCountriesBloc, FetchCountriesState>(
+            builder: (context, state) {
+          if (state is LoadingState) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state is ErrorState) {
+            return Center(
+              child: Text(state.message),
+            );
+          } else if (state is LoadedState) {
+            print("loaded" + state.loadedCountriesList.length.toString());
+          }
+          return Container();
+          // return Column(
+          //   crossAxisAlignment: CrossAxisAlignment.center,
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [],
+          // );
+        }),
+      ),
     );
   }
 }

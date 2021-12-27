@@ -7,7 +7,6 @@ import 'package:home_travling/core/network/network_info.dart';
 import 'package:home_travling/featuers/fetch_countries/data/datasources/countries_remote_data_source.dart';
 import 'package:home_travling/featuers/fetch_countries/data/models/country_model.dart';
 import 'package:home_travling/featuers/fetch_countries/data/repositories/countries_repostiry_impl.dart';
-import 'package:home_travling/featuers/fetch_countries/domain/entities/country_entity.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockRemoteDataSource extends Mock implements CountriesRemoteDataSource {}
@@ -121,73 +120,4 @@ void main() async {
     });
   });
 
-  group("Load More Countries List", () {
-    List<CountryModel> tCountriesList = const [
-      CountryModel(
-        countryEnglishName: "Italy",
-        countryArabicName: "ايطاليا",
-        countryId: "1",
-        countryFlag:
-            "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg",
-      ),
-    ];
-
-    runTestOnline(() {
-      test("should check if the device is online", () async {
-        // arrange
-        when(() => mockRemoteDataSource.loadMoreCountriesList(firstDocument))
-            .thenAnswer((_) async => tCountriesList);
-        // act
-        await repostiry.loadMoreCountriesList(firstDocument);
-        // assert
-        verify(() => mockNetworkinfo.isConnected);
-      });
-
-      test(
-          'should return remote data when the call to remote data source is successful',
-          () async {
-        //arrange
-
-        when(() => mockRemoteDataSource.loadMoreCountriesList(firstDocument))
-            .thenAnswer((_) async => tCountriesList);
-        // act
-        final result = await repostiry.loadMoreCountriesList(firstDocument);
-
-        //assert
-        verify(() => mockRemoteDataSource.loadMoreCountriesList(firstDocument));
-        expect(result, equals(Right(tCountriesList)));
-      });
-
-      // ------
-
-      test(
-          'should return server failure when the call to remote data source is unsuccessful',
-          () async {
-        // arrange
-        when(() => mockRemoteDataSource.loadMoreCountriesList(firstDocument))
-            .thenThrow(ServerException());
-        // act
-        final result = await repostiry.loadMoreCountriesList(firstDocument);
-        // assert
-        verify(() => mockRemoteDataSource.loadMoreCountriesList(firstDocument));
-        // verifyZeroInteractions(mockRemoteDataSource);
-        expect(result, equals(Left(ServerFailure())));
-      });
-    });
-
-    // group("when the device is online", ());
-
-    runTestOffline(() {
-      test("should return error message there is no connection", () async {
-        // arrange
-        when(() => mockRemoteDataSource.loadMoreCountriesList(firstDocument))
-            .thenThrow(ServerException());
-        // act
-        final result = await repostiry.loadMoreCountriesList(firstDocument);
-        // assert
-        verify(() => mockNetworkinfo.isConnected);
-        expect(result, equals(Left(ServerFailure())));
-      });
-    });
-  });
 }

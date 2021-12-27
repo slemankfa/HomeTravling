@@ -24,13 +24,13 @@ class CountryRepostiryImpl implements CountriesRepositry {
     });
   }
 
-  @override
-  Future<Either<Failure, List<CountryEntity>>> loadMoreCountriesList(
-      DocumentSnapshot lastDocumentSnapshot) async {
-    return _loadCountries(() {
-      return remoteDataSource.loadMoreCountriesList(lastDocumentSnapshot);
-    });
-  }
+  // @override
+  // Future<Either<Failure, List<CountryEntity>>> loadMoreCountriesList(
+  //     DocumentSnapshot lastDocumentSnapshot) async {
+  //   return _loadCountries(() {
+  //     return remoteDataSource.loadMoreCountriesList(lastDocumentSnapshot);
+  //   });
+  // }
 
   Future<Either<Failure, List<CountryEntity>>> _loadCountries(
       _LoadCountriesOrLoadMoreList loadCountriesOrLoadMoreList) async {

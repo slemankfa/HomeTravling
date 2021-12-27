@@ -8,9 +8,3 @@ abstract class FetchCountriesEvent extends Equatable {
 }
 
 class GetCountriesListEvent extends FetchCountriesEvent {}
-
-class LoadMoreCountriesListEvent extends FetchCountriesEvent {
-  final DocumentSnapshot documentSnapshot;
-
-  const LoadMoreCountriesListEvent(this.documentSnapshot);
-}
