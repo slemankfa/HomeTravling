@@ -39,7 +39,7 @@ class CountryRepostiryImpl implements CountriesRepositry {
       try {
         final remoreCounrtiesSource = await loadCountriesOrLoadMoreList();
         return Right(remoreCounrtiesSource);
-      } on ServerException {
+      } catch (e) {
         return Left(ServerFailure());
       }
     } else {

@@ -13,44 +13,54 @@ import 'package:home_travling/featuers/fetch_countries/domain/usecases/load_more
 part 'fetch_countries_event.dart';
 part 'fetch_countries_state.dart';
 
+///https://bloclibrary.dev/#/flutterinfinitelisttutorial
+
 class FetchCountriesBloc
     extends Bloc<FetchCountriesEvent, FetchCountriesState> {
   final GetCountriesList getCountriesList;
   final LoadMoreCountriesList loadCountriesList;
+
+  List<CountryEntity> loadedCountries = [];
+  late DocumentSnapshot theLastDocumentSnapShot ;
+
   FetchCountriesBloc({
     required this.getCountriesList,
     required this.loadCountriesList,
   }) : super(EmptyState()) {
-    on<GetCountriesListEvent>(
-        (event, emit) async => emit(await _getCountriesList(emit)));
-    on<LoadMoreCountriesListEvent>((event, emit) async => emit(
-          await _loadCountriesList(
-            event,
-            emit,
-          ),
-        ));
+    on<GetCountriesListEvent>(_onCountriesFetched);
+    on<LoadMoreCountriesListEvent>(_loadMoreCountriesList);
+
+    // on<GetCountriesListEvent>(
+    //     (event, emit) async => emit(await _getCountriesList(emit)));
+    // on<LoadMoreCountriesListEvent>((event, emit) async => emit(
+    //       await _loadCountriesList(
+    //         event,
+    //         emit,
+    //       ),
+    //     ));
   }
 
-  _getCountriesList(Emitter eventEmitter) async {
-    eventEmitter(LoadingState());
+  Future<void> _onCountriesFetched(
+      FetchCountriesEvent event, Emitter<FetchCountriesState> emit) async {
     final failureOrGetCountries = await getCountriesList(NoParams());
     failureOrGetCountries.fold(
-        (failure) =>
-            eventEmitter(ErrorState(message: _mapFailureToMessage(failure))),
-        (loadedCountries) =>
-            eventEmitter(LoadedState(loadedCountriesList: loadedCountries)));
+        (failure) => emit(ErrorState(message: _mapFailureToMessage(failure))),
+        (fetchedCountries) {
+      loadedCountries = fetchedCountries;
+      emit(LoadedState(loadedCountriesList: loadedCountries));
+    });
   }
 
-  _loadCountriesList(
-      LoadMoreCountriesListEvent event, Emitter eventEmitter) async {
-    eventEmitter(LoadingState());
-    final failureOrGetCountries = await loadCountriesList(
+  Future<void> _loadMoreCountriesList(LoadMoreCountriesListEvent event,
+      Emitter<FetchCountriesState> emit) async {
+    final failureOrLoadCountries = await loadCountriesList(
         Params(lastDocumentSnapShot: event.documentSnapshot));
-    failureOrGetCountries.fold(
-        (failure) =>
-            eventEmitter(ErrorState(message: _mapFailureToMessage(failure))),
-        (loadedCountries) =>
-            eventEmitter(LoadedState(loadedCountriesList: loadedCountries)));
+    failureOrLoadCountries.fold(
+        (failure) => emit(ErrorState(message: _mapFailureToMessage(failure))),
+        (loadedMoreCountries) {
+      loadedCountries.addAll(loadedMoreCountries);
+      emit(LoadedState(loadedCountriesList: loadedCountries));
+    });
   }
 
   String _mapFailureToMessage(Failure failure) {

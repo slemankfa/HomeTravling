@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_travling/featuers/fetch_countries/domain/usecases/get_countries_list.dart';
+import 'package:home_travling/featuers/fetch_countries/presentation/bloc/fetch_countries_bloc.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../../injection_container.dart';
 
 class CountriesScreen extends StatefulWidget {
   @override
@@ -29,12 +34,43 @@ class _CountriesScreenState extends State<CountriesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [Text("sadasdasd")],
-      ),
+    return BlocProvider(
+      create: (_) => sl<FetchCountriesBloc>(),
+      child: BlocBuilder<FetchCountriesBloc, FetchCountriesState>(
+          builder: (context, state) {
+        if (state is ErrorState) {
+          print("Error" + state.message);
+        } else if (state is LoadedState) {
+          print("loaded" + state.loadedCountriesList.length.toString());
+        }
+        return Scaffold(
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Text("esrrr")],
+          ),
+          floatingActionButton: Row(
+            children: [
+              FloatingActionButton(
+                onPressed: () {
+                  BlocProvider.of<FetchCountriesBloc>(context)
+                      .add(GetCountriesListEvent());
+                },
+                tooltip: 'Increment',
+                child: const Icon(Icons.more),
+              ),
+              FloatingActionButton(
+                onPressed: () {
+                  // BlocProvider.of<FetchCountriesBloc>(context)
+                  //     .add(LoadMoreCountriesListEvent());
+                },
+                tooltip: 'Increment',
+                child: const Icon(Icons.add),
+              ),
+            ],
+          ), // This
+        );
+      }),
     );
   }
 }
