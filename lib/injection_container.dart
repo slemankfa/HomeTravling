@@ -5,7 +5,6 @@ import 'package:home_travling/featuers/fetch_countries/data/datasources/countrie
 import 'package:home_travling/featuers/fetch_countries/data/repositories/countries_repostiry_impl.dart';
 import 'package:home_travling/featuers/fetch_countries/domain/repositories/countries_repostiry.dart';
 import 'package:home_travling/featuers/fetch_countries/domain/usecases/get_countries_list.dart';
-import 'package:home_travling/featuers/fetch_countries/domain/usecases/load_more_countries_list.dart';
 import 'package:home_travling/featuers/fetch_countries/presentation/bloc/fetch_countries_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
@@ -20,10 +19,9 @@ Future<void> init() async {
   //     ));
 
   sl.registerFactory(() =>
-      FetchCountriesBloc(getCountriesList: sl(), loadCountriesList: sl()));
+      FetchCountriesBloc(getCountriesList: sl(), ));
   // use cases
   sl.registerLazySingleton(() => GetCountriesList(sl()));
-  sl.registerLazySingleton(() => LoadMoreCountriesList(sl()));
 
   // Repostiry
   sl.registerLazySingleton<CountriesRepositry>(
