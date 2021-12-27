@@ -6,7 +6,6 @@ import 'package:home_travling/featuers/fetch_countries/data/repositories/countri
 import 'package:home_travling/featuers/fetch_countries/domain/repositories/countries_repostiry.dart';
 import 'package:home_travling/featuers/fetch_countries/domain/usecases/get_countries_list.dart';
 import 'package:home_travling/featuers/fetch_countries/presentation/bloc/fetch_countries_bloc.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 // service locater
 final sl = GetIt.instance;
@@ -18,8 +17,9 @@ Future<void> init() async {
   //       loadMoreCountriesList: sl(),
   //     ));
 
-  sl.registerFactory(() =>
-      FetchCountriesBloc(getCountriesList: sl(), ));
+  sl.registerFactory(() => FetchCountriesBloc(
+        getCountriesList: sl(),
+      ));
   // use cases
   sl.registerLazySingleton(() => GetCountriesList(sl()));
 
@@ -32,10 +32,11 @@ Future<void> init() async {
       () => CountriesRemoteDataSourceImpl(sl()));
 
   //! Core
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+  // sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl());
 
   //! Externals
   final firestore = FirebaseFirestore.instance;
-  sl.registerLazySingleton(() => InternetConnectionChecker());
+  // sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton(() => firestore);
 }

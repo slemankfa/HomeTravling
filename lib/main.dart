@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'core/config.dart';
 import 'featuers/fetch_countries/presentation/pages/mobile/countries_page.dart';
 import "injection_container.dart" as di;
 import 'injection_container.dart';
@@ -10,7 +11,17 @@ import 'injection_container.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  await Firebase.initializeApp();
+  final configurations = Configurations();
+  // if (Firebase.apps.isEmpty) {
+  //   await Firebase.initializeApp(
+  //       options: FirebaseOptions(
+  //           apiKey: configurations.apiKey,
+  //           appId: configurations.appId,
+  //           messagingSenderId: configurations.messagingSenderId,
+  //           projectId: configurations.projectId));
+  // }
+   await Firebase.initializeApp();
+
   await di.init();
   runApp(
     EasyLocalization(
