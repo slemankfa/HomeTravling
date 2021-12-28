@@ -1,37 +1,41 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
+import 'package:responsive_framework/utils/scroll_behavior.dart';
 
 import 'core/config.dart';
-import 'featuers/fetch_countries/presentation/pages/mobile/countries_page.dart';
+import 'featuers/fetch_countries/presentation/pages/main_countries_pages.dart';
 import "injection_container.dart" as di;
-import 'injection_container.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   final configurations = Configurations();
   // if (Firebase.apps.isEmpty) {
-  //   await Firebase.initializeApp(
-  //       options: FirebaseOptions(
-  //           apiKey: configurations.apiKey,
-  //           appId: configurations.appId,
-  //           messagingSenderId: configurations.messagingSenderId,
-  //           projectId: configurations.projectId));
+  await Firebase.initializeApp(
+      options: FirebaseOptions(
+          apiKey: configurations.apiKey,
+          appId: configurations.appId,
+          messagingSenderId: configurations.messagingSenderId,
+          projectId: configurations.projectId));
   // }
-   await Firebase.initializeApp();
+  // await Firebase.initializeApp();
 
   await di.init();
-  runApp(
-    EasyLocalization(
-      supportedLocales: const [Locale('en'), Locale('ar')],
-      path:
-          'assets/translations', // <-- change the path of the translation files
-      fallbackLocale: const Locale('en'),
-      child: const MyApp(),
-    ),
-  );
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]).then((_) {
+    runApp(
+      EasyLocalization(
+        supportedLocales: const [Locale('en'), Locale('ar')],
+        path:
+            'assets/translations', // <-- change the path of the translation files
+        fallbackLocale: const Locale('en'),
+        child: const MyApp(),
+      ),
+    );
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -58,7 +62,20 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: CountriesScreen(),
+      // home: CountriesScreen(),
+      home: MainCountriesScreen(),
+      builder: ((context, widget) => ResponsiveWrapper.builder(
+            BouncingScrollWrapper.builder(context, widget!),
+            // maxWidth: 1200,
+            minWidth: 450,
+            defaultScale: true,
+            breakpoints: const [
+              ResponsiveBreakpoint.resize(450, name: MOBILE),
+              ResponsiveBreakpoint.autoScale(800, name: TABLET),
+              ResponsiveBreakpoint.autoScale(1000, name: TABLET),
+              ResponsiveBreakpoint.resize(1200, name: DESKTOP),
+            ],
+          )),
     );
   }
 }
