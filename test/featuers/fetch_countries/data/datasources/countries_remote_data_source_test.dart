@@ -17,7 +17,7 @@ void main() async {
   FakeFirebaseFirestore instance = FakeFirebaseFirestore();
   MockFirestore mockFirestore = MockFirestore();
 
-  CountriesRemoteDataSourceImpl dataSource =
+  CountriesRemoteDataSourceImpl dataSource = 
       CountriesRemoteDataSourceImpl(instance);
 
   await instance.collection('countries').add(
