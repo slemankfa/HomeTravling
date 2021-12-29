@@ -7,7 +7,7 @@ import '../../../../core/network/network_info.dart';
 import '../../domain/entities/country_entity.dart';
 import '../../domain/repositories/countries_repostiry.dart';
 import '../datasources/countries_remote_data_source.dart';
-
+  
 typedef Future<List<CountryEntity>> _LoadCountriesOrLoadMoreList();
 
 class CountryRepostiryImpl implements CountriesRepositry {

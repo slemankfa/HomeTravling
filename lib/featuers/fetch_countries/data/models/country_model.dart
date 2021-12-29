@@ -1,13 +1,13 @@
 import 'package:home_travling/featuers/fetch_countries/domain/entities/country_entity.dart';
 
 class CountryModel extends CountryEntity {
-  final String countryEnglishName, countryArabicName, countryId, countryFlag;
+  // final String countryEnglishName, countryArabicName, countryId, countryFlag;
 
   const CountryModel(
-      {required this.countryEnglishName,
-      required this.countryArabicName,
-      required this.countryId,
-      required this.countryFlag})
+      {required String countryEnglishName,
+      required String countryArabicName,
+      required String countryId,
+      required String countryFlag})
       : super(
             countryArabicName: countryArabicName,
             countryEnglishName: countryEnglishName,
