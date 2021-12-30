@@ -39,6 +39,9 @@ class FetchCountriesBloc
     });
   }
 
+/* 
+we will move it to the core because it can be in all featuers 
+ */
   String _mapFailureToMessage(Failure failure) {
     // Instead of a regular 'if (failure is ServerFailure)...'
     switch (failure.runtimeType) {

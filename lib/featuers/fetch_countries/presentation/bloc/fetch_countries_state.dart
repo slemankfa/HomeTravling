@@ -6,7 +6,7 @@ abstract class FetchCountriesState extends Equatable {
   @override
   List<Object> get props => [];
 }
-
+ 
 class EmptyState extends FetchCountriesState {}
 
 class LoadingState extends FetchCountriesState {}
