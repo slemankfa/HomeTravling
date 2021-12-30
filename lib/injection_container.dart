@@ -1,6 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import 'package:home_travling/core/network/network_info.dart';
+import 'package:home_travling/featuers/fetch_cities/data/datasource/cities_remote_data_source.dart';
+import 'package:home_travling/featuers/fetch_cities/data/repositories/cities_repostiry_impl.dart';
+import 'package:home_travling/featuers/fetch_cities/domain/repositories/cities_repostiry.dart';
+import 'package:home_travling/featuers/fetch_cities/domain/usecases/get_cities_list.dart';
+import 'package:home_travling/featuers/fetch_cities/presentation/bloc/fetch_cities_bloc.dart';
 import 'package:home_travling/featuers/fetch_countries/data/datasources/countries_remote_data_source.dart';
 import 'package:home_travling/featuers/fetch_countries/data/repositories/countries_repostiry_impl.dart';
 import 'package:home_travling/featuers/fetch_countries/domain/repositories/countries_repostiry.dart';
@@ -31,6 +36,17 @@ Future<void> init() async {
   sl.registerLazySingleton<CountriesRemoteDataSource>(
       () => CountriesRemoteDataSourceImpl(sl()));
 
+//! Featuers - Cities
+  sl.registerFactory(() => FetchCitiesBloc(getCistiesList: sl()));
+// use cases
+  sl.registerLazySingleton(() => GetCistiesList(sl()));
+// Repostiry
+  sl.registerLazySingleton<CitiesRepostiry>(
+      () => CitiesRepostiryImpl(networkInfo: sl(), remoteDataSource: sl()));
+
+  // Data Source
+  sl.registerLazySingleton<CitiesRemoteDataSource>(
+      () => CitiesRemoteDataSourceImpl(sl()));
   //! Core
   // sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl());

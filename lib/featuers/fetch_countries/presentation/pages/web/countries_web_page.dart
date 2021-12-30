@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:home_travling/core/utils/custom_text.dart';
 import 'package:home_travling/featuers/fetch_countries/presentation/bloc/fetch_countries_bloc.dart';
+import 'package:home_travling/featuers/fetch_countries/presentation/widgets/countries_item.dart';
 
 import '../../../../../styels.dart';
 
@@ -56,61 +57,9 @@ class CountriesWebPage extends StatelessWidget {
           child: StaggeredGridView.countBuilder(
             crossAxisCount: 4,
             itemCount: state.loadedCountriesList.length,
-            itemBuilder: (BuildContext context, int index) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 200,
-                  // width: 300,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(15.0),
-                        child: Image.network(
-                          state.loadedCountriesList[index].countryFlag,
-                          fit: BoxFit.fill,
-                          height: 200,
-                          width: MediaQuery.of(context).size.width * 0.50,
-                          // width: 100,
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: Container(
-                          height: 50,
-                          decoration: const BoxDecoration(
-                            color: Colors.black45,
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(15),
-                              bottomRight: Radius.circular(15),
-                            ),
-                          ),
-                          child: Container(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CustomText(
-                              text: context.deviceLocale != "ar"
-                                  ? state.loadedCountriesList[index]
-                                      .countryEnglishName
-                                  : state.loadedCountriesList[index]
-                                      .countryArabicName,
-                              style: Styles.mainTextStyle
-                                  .copyWith(color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-              ],
+            itemBuilder: (BuildContext context, int index) => CountriesItem(
+              state: state,
+              index: index,
             ),
             staggeredTileBuilder: (int index) => const StaggeredTile.fit(1),
             mainAxisSpacing: 4.0,
@@ -121,3 +70,4 @@ class CountriesWebPage extends StatelessWidget {
     );
   }
 }
+

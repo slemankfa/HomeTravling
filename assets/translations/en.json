@@ -1,5 +1,6 @@
 {
     "SERVER_FAILURE_MESSAGE": "Server Failure", 
     "UNEXPECTED_ERROR_MESSAGE":"Unexpected Error", 
-    "main_screen_header_title" : "All the world is available from your current place."
+    "main_screen_header_title" : "All the world is available from your current place.", 
+    "empty_list":"The list is Empty"
 }
