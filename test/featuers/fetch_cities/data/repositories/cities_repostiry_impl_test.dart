@@ -9,7 +9,6 @@ import 'package:home_travling/featuers/fetch_cities/data/model/city_model.dart';
 import 'package:home_travling/featuers/fetch_cities/data/repositories/cities_repostiry_impl.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../cities_list.dart';
 
 class MockNetworkinfo extends Mock implements NetworkInfo {}
 

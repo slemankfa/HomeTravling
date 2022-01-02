@@ -10,7 +10,7 @@ import 'package:home_travling/featuers/fetch_cities/presentation/bloc/fetch_citi
 import 'package:mocktail/mocktail.dart';
 
 import '../../../cities_list.dart';
-
+ 
 class MockGetCitiesList extends Mock implements GetCistiesList {}
 
 class MockFaluier extends Mock implements Failure {}
