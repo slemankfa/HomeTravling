@@ -50,9 +50,9 @@ void main() async {
       });
 
       final snapshot = await instance.collection('cities').get();
-      final firstDocument = snapshot.docs[1];
+      final secondDocument = snapshot.docs[1];
       // arrange
-      final Map<String, dynamic> jsonMap = firstDocument.data();
+      final Map<String, dynamic> jsonMap = secondDocument.data();
       // act
       final result = CityModel.fromJson(jsonMap);
       // assert

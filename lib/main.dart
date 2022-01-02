@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:home_travling/add_activity.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
 
@@ -14,14 +15,14 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   final configurations = Configurations();
   // if (Firebase.apps.isEmpty) {
-  await Firebase.initializeApp(
-      options: FirebaseOptions(
-          apiKey: configurations.apiKey,
-          appId: configurations.appId,
-          messagingSenderId: configurations.messagingSenderId,
-          projectId: configurations.projectId));
+  // await Firebase.initializeApp(
+  //     options: FirebaseOptions(
+  //         apiKey: configurations.apiKey,
+  //         appId: configurations.appId,
+  //         messagingSenderId: configurations.messagingSenderId,
+  //         projectId: configurations.projectId));
   // }
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
 
   await di.init();
   SystemChrome.setPreferredOrientations(
@@ -63,7 +64,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: CountriesScreen(),
-      home: MainCountriesScreen(),
+      home:AddActivity(),
+      //  MainCountriesScreen(),
       builder: ((context, widget) => ResponsiveWrapper.builder(
             BouncingScrollWrapper.builder(context, widget!),
             // maxWidth: 1200,

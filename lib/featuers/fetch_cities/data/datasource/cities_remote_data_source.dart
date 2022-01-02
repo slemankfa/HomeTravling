@@ -7,7 +7,7 @@ abstract class CitiesRemoteDataSource {
   /// Throws a [ServerException] for all error codes.
   Future<List<CityModel>> getCitiesList(String countryId);
 }
-
+ 
 class CitiesRemoteDataSourceImpl implements CitiesRemoteDataSource {
   final FirebaseFirestore firebaseFirestore;
 
@@ -27,3 +27,4 @@ class CitiesRemoteDataSourceImpl implements CitiesRemoteDataSource {
     return cities;
   }
 }
+  

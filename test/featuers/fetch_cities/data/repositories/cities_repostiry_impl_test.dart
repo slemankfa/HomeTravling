@@ -36,7 +36,7 @@ void main() {
       });
       body();
     });
-  }
+  } 
 
   void runTestOffline(Function body) {
     group('device is offline', () {

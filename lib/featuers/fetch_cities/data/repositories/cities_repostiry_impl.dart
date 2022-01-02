@@ -4,7 +4,7 @@ import 'package:home_travling/featuers/fetch_cities/domain/entities/city_entity.
 import 'package:home_travling/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:home_travling/featuers/fetch_cities/domain/repositories/cities_repostiry.dart';
-
+ 
 class CitiesRepostiryImpl implements CitiesRepostiry {
   final CitiesRemoteDataSource remoteDataSource;
   final NetworkInfo networkInfo;
