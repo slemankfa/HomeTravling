@@ -64,8 +64,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: CountriesScreen(),
-      home:AddActivity(),
-      //  MainCountriesScreen(),
+      home: MainCountriesScreen(),
       builder: ((context, widget) => ResponsiveWrapper.builder(
             BouncingScrollWrapper.builder(context, widget!),
             // maxWidth: 1200,

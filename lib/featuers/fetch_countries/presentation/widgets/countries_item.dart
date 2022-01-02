@@ -25,7 +25,7 @@ class CountriesItem extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                  builder: (context) => MainCitiesScreen(
+                  builder: (context) => MainCitiesPages(
                         country: state.loadedCountriesList[index],
                       )),
             );

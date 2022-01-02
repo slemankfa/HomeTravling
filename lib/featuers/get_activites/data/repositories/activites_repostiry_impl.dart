@@ -5,11 +5,11 @@ import 'package:home_travling/featuers/get_activites/data/datasource/activites_r
 import 'package:home_travling/featuers/get_activites/domain/entites/activity_entity.dart';
 import 'package:home_travling/featuers/get_activites/domain/repositories/activites_repostiry.dart';
 
-class ActivityRepostiryImpl implements ActivitiesRepostiry {
+class ActivitiesRepostiryImpl implements ActivitiesRepostiry {
   final NetworkInfo networkInfo;
   final ActivitiesRemoteDataSource activitiesRemoteDataSource;
 
-  ActivityRepostiryImpl({
+  ActivitiesRepostiryImpl({
     required this.networkInfo,
     required this.activitiesRemoteDataSource,
   });

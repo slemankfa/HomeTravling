@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-
 import '../../../../core/utils/failuer_message.dart';
 import '../../domain/entites/activity_entity.dart';
 import '../../domain/usecases/get_activites_list.dart';

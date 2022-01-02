@@ -11,17 +11,32 @@ import 'package:home_travling/featuers/fetch_countries/data/repositories/countri
 import 'package:home_travling/featuers/fetch_countries/domain/repositories/countries_repostiry.dart';
 import 'package:home_travling/featuers/fetch_countries/domain/usecases/get_countries_list.dart';
 import 'package:home_travling/featuers/fetch_countries/presentation/bloc/fetch_countries_bloc.dart';
+import 'package:home_travling/featuers/get_activites/data/datasource/activites_remote_data_source.dart';
+import 'package:home_travling/featuers/get_activites/data/repositories/activites_repostiry_impl.dart';
+import 'package:home_travling/featuers/get_activites/domain/repositories/activites_repostiry.dart';
+import 'package:home_travling/featuers/get_activites/domain/usecases/get_activites_list.dart';
+import 'package:home_travling/featuers/get_activites/presentation/bloc/fetch_activities_bloc.dart';
 
 // service locater
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  //! Featuers - Countries
-  // sl.registerFactory(() => CountriesProvider(
-  //       getCountriesList: sl(),
-  //       loadMoreCountriesList: sl(),
-  //     ));
+  //! Featuers - Activities
+  sl.registerFactory(() => FetchActivitiesBloc(getActivitesList: sl()));
 
+  // usecase
+  sl.registerLazySingleton(() => GetActivitesList(sl()));
+
+  // Repostiry
+  sl.registerLazySingleton<ActivitiesRepostiry>(
+    () => ActivitiesRepostiryImpl(
+        activitiesRemoteDataSource: sl(), networkInfo: sl()),
+  );
+
+  // Data Source
+  sl.registerLazySingleton<ActivitiesRemoteDataSource>(
+      () => ActivitiesRemoteDataSourceImpl(sl()));
+  //! Featuers - Countries
   sl.registerFactory(() => FetchCountriesBloc(
         getCountriesList: sl(),
       ));

@@ -1,30 +1,24 @@
-import 'package:dartz/dartz_streaming.dart';
-import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:home_travling/core/utils/custom_text.dart';
-import 'package:home_travling/featuers/fetch_cities/domain/usecases/get_cities_list.dart';
-import 'package:home_travling/featuers/fetch_cities/presentation/bloc/fetch_cities_bloc.dart';
-import 'package:home_travling/featuers/fetch_cities/presentation/pages/mobile/cities_mobile_page.dart';
-import 'package:home_travling/featuers/fetch_cities/presentation/pages/web/cities_web_page.dart';
-import 'package:home_travling/featuers/fetch_countries/data/models/country_model.dart';
-import 'package:home_travling/featuers/fetch_countries/domain/entities/country_entity.dart';
-import 'package:home_travling/featuers/fetch_countries/presentation/pages/web/countries_web_page.dart';
-import 'package:home_travling/featuers/fetch_countries/presentation/widgets/error_widget.dart';
-import 'package:home_travling/featuers/fetch_countries/presentation/widgets/loading_widget.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../../../injection_container.dart';
+import '../../../fetch_countries/domain/entities/country_entity.dart';
+import '../../../fetch_countries/presentation/widgets/error_widget.dart';
+import '../../../fetch_countries/presentation/widgets/loading_widget.dart';
+import '../bloc/fetch_cities_bloc.dart';
+import 'mobile/cities_mobile_page.dart';
+import 'web/cities_web_page.dart';
 
-class MainCitiesScreen extends StatefulWidget {
-  MainCitiesScreen({required this.country});
+class MainCitiesPages extends StatefulWidget {
+  MainCitiesPages({required this.country});
 
   @override
-  _MainCitiesScreenState createState() => _MainCitiesScreenState();
+  _MainCitiesPagesState createState() => _MainCitiesPagesState();
   final CountryEntity country;
 }
 
-class _MainCitiesScreenState extends State<MainCitiesScreen> {
+class _MainCitiesPagesState extends State<MainCitiesPages> {
   @override
   void initState() {
     // TODO: implement initState

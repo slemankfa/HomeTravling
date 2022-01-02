@@ -25,7 +25,7 @@ void main() {
   final instaance = FakeFirebaseFirestore();
   const tCityId = "2";
 
-  ActivityRepostiryImpl repostiry = ActivityRepostiryImpl(
+  ActivitiesRepostiryImpl repostiry = ActivitiesRepostiryImpl(
     networkInfo: mockNetworkInfo,
     activitiesRemoteDataSource: mockRemoteDatasource,
   );

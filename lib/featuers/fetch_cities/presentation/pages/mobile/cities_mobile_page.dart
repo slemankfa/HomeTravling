@@ -2,7 +2,9 @@ import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:home_travling/core/utils/custom_text.dart';
 import 'package:home_travling/featuers/fetch_cities/presentation/bloc/fetch_cities_bloc.dart';
+import 'package:home_travling/featuers/fetch_cities/presentation/widgets/cities_item.dart';
 import 'package:home_travling/featuers/fetch_countries/domain/entities/country_entity.dart';
+import 'package:home_travling/featuers/get_activites/presentation/pages/main_activites_pages.dart';
 
 class CitiesMobilePage extends StatelessWidget {
   final LoadedState state;
@@ -59,37 +61,9 @@ class CitiesMobilePage extends StatelessWidget {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                      return Container(
-                        color: Colors.white,
-                        // height: 100.0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              // color: Colors.black26,
-                              width: double.infinity,
-                              margin: const EdgeInsets.all(15),
-                              height: 150,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(15.0),
-                                child: Image.network(
-                                  state.loadedCitiesList[index].cityImage,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: CustomText(
-                                text: state
-                                    .loadedCitiesList[index].cityEnaglishName,
-                                style: const TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ],
-                        ),
+                      return CitiesItem(
+                        state: state,
+                        index: index,
                       );
                     },
                     childCount: state.loadedCitiesList.length,
@@ -113,13 +87,4 @@ class CitiesMobilePage extends StatelessWidget {
   }
 }
 
-// if (state.loadedCitiesList.isEmpty) {
-//           return Container(
-//             child: Center(
-//               child: CustomText(
-//                 text: "empty_list".tr(),
-//                 style: TextStyle(),
-//               ),
-//             ),
-//           );
-//         }
+
