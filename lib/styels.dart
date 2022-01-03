@@ -8,4 +8,11 @@ abstract class Styles {
     fontWeight: FontWeight.bold,
     fontSize: 14,
   );
+
+   static const TextStyle appbarTextStyle = TextStyle(
+    // color: Colors.black,
+    // fontFamily: "Jazeera",
+    fontWeight: FontWeight.bold,
+    fontSize: 16,
+  );
 }

@@ -8,6 +8,7 @@ class ActivityModel extends ActivityEntity {
       required String activityId,
       required String activityDescription,
       required String activityImage,
+      required String activityVideo,
       required String activityEnglishName,
       required String activityArbaicName})
       : super(
@@ -17,6 +18,7 @@ class ActivityModel extends ActivityEntity {
           activityDescription: activityDescription,
           activityEnglishName: activityEnglishName,
           activityId: activityId,
+          activityVideo: activityVideo,
           activityImage: activityImage,
           activityTypeId: activityTypeId,
         );
@@ -29,6 +31,7 @@ class ActivityModel extends ActivityEntity {
       activityId: json["activity_id"].toString(),
       activityDescription: json["activity_description"],
       activityImage: json["activity_image"],
+      activityVideo: json["activity_video"],
       activityEnglishName: json["activity_name_en"],
       activityArbaicName: json["activity_name_ar"],
     );

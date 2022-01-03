@@ -13,16 +13,16 @@ import "injection_container.dart" as di;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+
+  ///Flutter Web
   final configurations = Configurations();
-  // if (Firebase.apps.isEmpty) {
-  // await Firebase.initializeApp(
-  //     options: FirebaseOptions(
-  //         apiKey: configurations.apiKey,
-  //         appId: configurations.appId,
-  //         messagingSenderId: configurations.messagingSenderId,
-  //         projectId: configurations.projectId));
-  // }
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+      options: FirebaseOptions(
+          apiKey: configurations.apiKey,
+          appId: configurations.appId,
+          messagingSenderId: configurations.messagingSenderId,
+          projectId: configurations.projectId));
+  // await Firebase.initializeApp();
 
   await di.init();
   SystemChrome.setPreferredOrientations(

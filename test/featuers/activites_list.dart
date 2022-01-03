@@ -7,6 +7,7 @@ List<ActivityEntity> tAcitvitiesList = [
       cityId: "2",
       countryId: "3",
       activityTypeId: "2",
+      activityVideo: "QzZWmBRzJbk",
       activityId: "3",
       activityDescription:
           "Watch | A lovely traditional Palestinian wedding in Birzeit, north of Ramallah occupied Palestine.",
@@ -19,6 +20,7 @@ List<ActivityEntity> tAcitvitiesList = [
 
 ActivityModel tActivityModel = ActivityModel(
     cityId: "2",
+    activityVideo: "QzZWmBRzJbk",
     countryId: "3",
     activityTypeId: "2",
     activityId: "3",

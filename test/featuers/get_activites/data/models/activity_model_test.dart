@@ -25,8 +25,7 @@ void main() async {
         "activity_name_ar": "زواج فلسطيني تقليدي",
         "activity_name_en":
             "Watch | A lovely traditional Palestinian wedding in Birzeit, north of Ramallah occupied Palestine",
-        "activity_video":
-            "https://www.youtube.com/watch?v=QzZWmBRzJbk&ab_channel=Gazadeserveslife",
+        "activity_video": "QzZWmBRzJbk",
         "activity_type": {
           "activity_type_id": "2",
         },

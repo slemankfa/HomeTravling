@@ -64,6 +64,7 @@ class CitiesMobilePage extends StatelessWidget {
                       return CitiesItem(
                         state: state,
                         index: index,
+                        countryEntity: countryEntity,
                       );
                     },
                     childCount: state.loadedCitiesList.length,
@@ -86,5 +87,3 @@ class CitiesMobilePage extends StatelessWidget {
     );
   }
 }
-
-

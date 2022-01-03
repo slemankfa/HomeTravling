@@ -1,13 +1,14 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:home_travling/core/utils/custom_text.dart';
+import 'package:home_travling/core/utils/localiztion_helper.dart';
 import 'package:home_travling/featuers/fetch_cities/presentation/pages/main_cities_pages.dart';
 import 'package:home_travling/featuers/fetch_countries/presentation/bloc/fetch_countries_bloc.dart';
 
 import '../../../../styels.dart';
 
 class CountriesItem extends StatelessWidget {
-  const CountriesItem({
+  CountriesItem({
     Key? key,
     required this.state,
     required this.index,
@@ -15,6 +16,7 @@ class CountriesItem extends StatelessWidget {
 
   final LoadedState state;
   final int index;
+  LocaliztionHelper localiztionHelper = LocaliztionHelper();
 
   @override
   Widget build(BuildContext context) {
@@ -64,11 +66,11 @@ class CountriesItem extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(8.0),
                       child: CustomText(
-                        text: context.deviceLocale != "ar"
+                        text: localiztionHelper.checkLanguage(context) == "ar"
                             ? state
-                                .loadedCountriesList[index].countryEnglishName
+                                .loadedCountriesList[index].countryArabicName
                             : state
-                                .loadedCountriesList[index].countryArabicName,
+                                .loadedCountriesList[index].countryEnglishName,
                         style:
                             Styles.mainTextStyle.copyWith(color: Colors.white),
                       ),

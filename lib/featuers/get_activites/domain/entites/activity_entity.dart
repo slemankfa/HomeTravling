@@ -9,6 +9,7 @@ class ActivityEntity extends Equatable {
       countryId,
       activityDescription,
       activityImage,
+      activityVideo ,
       activityEnglishName,
       activityArbaicName;
 
@@ -19,6 +20,7 @@ class ActivityEntity extends Equatable {
       required this.activityId,
       required this.activityDescription,
       required this.activityImage,
+      required this.activityVideo,
       required this.activityEnglishName,
       required this.activityArbaicName});
 
@@ -32,6 +34,7 @@ class ActivityEntity extends Equatable {
         activityDescription,
         activityImage,
         activityEnglishName,
-        activityArbaicName
+        activityArbaicName, 
+        activityVideo
       ];
 }

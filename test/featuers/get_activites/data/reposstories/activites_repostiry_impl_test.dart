@@ -52,6 +52,7 @@ void main() {
     List<ActivityModel> tActivitesList = [
       ActivityModel(
           cityId: "2",
+          activityVideo: "QzZWmBRzJbk",
           countryId: "3",
           activityTypeId: "2",
           activityId: "3",
