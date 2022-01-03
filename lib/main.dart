@@ -22,6 +22,8 @@ void main() async {
           appId: configurations.appId,
           messagingSenderId: configurations.messagingSenderId,
           projectId: configurations.projectId));
+          
+  ///mobile 
   // await Firebase.initializeApp();
 
   await di.init();

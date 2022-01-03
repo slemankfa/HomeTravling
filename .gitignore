@@ -33,7 +33,9 @@
 
 # Web related
 lib/generated_plugin_registrant.dart
-lib/core/config
+
+# my files
+lib/core/config.dart
 
 
 # Symbolication related
