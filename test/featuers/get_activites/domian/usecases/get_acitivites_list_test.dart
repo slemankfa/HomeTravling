@@ -6,7 +6,7 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../activites_list.dart';
 
-class MockAcitivesRepositry extends Mock implements ActivitiesRepostiry {}
+class MockAcitivesRepositry extends Mock implements ActivitiesRepostiry {} 
 
 void main() {
   MockAcitivesRepositry mockAcitivesRepositry = MockAcitivesRepositry();
