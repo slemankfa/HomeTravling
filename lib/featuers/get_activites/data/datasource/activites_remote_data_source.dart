@@ -26,4 +26,5 @@ class ActivitiesRemoteDataSourceImpl implements ActivitiesRemoteDataSource {
     }
     return activites;
   }
-}
+} 
+

@@ -16,15 +16,15 @@ void main() async {
 
   ///Flutter Web
   final configurations = Configurations();
-  await Firebase.initializeApp(
-      options: FirebaseOptions(
-          apiKey: configurations.apiKey,
-          appId: configurations.appId,
-          messagingSenderId: configurations.messagingSenderId,
-          projectId: configurations.projectId));
+  // await Firebase.initializeApp(
+  //     options: FirebaseOptions(
+  //         apiKey: configurations.apiKey,
+  //         appId: configurations.appId,
+  //         messagingSenderId: configurations.messagingSenderId,
+  //         projectId: configurations.projectId));
           
   ///mobile 
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
 
   await di.init();
   SystemChrome.setPreferredOrientations(

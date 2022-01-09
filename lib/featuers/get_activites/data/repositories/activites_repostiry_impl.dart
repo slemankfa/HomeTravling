@@ -28,6 +28,6 @@ class ActivitiesRepostiryImpl implements ActivitiesRepostiry {
       }
     } else {
       return Left(ServerFailure());
-    }
+    } 
   }
 }
